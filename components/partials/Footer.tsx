@@ -10,7 +10,6 @@ export default function Footer() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-slate-800">
           
-          {/* Sisi Kiri: Branding Singkat */}
           <div className="text-center md:text-left space-y-2">
             <h3 className="text-lg font-bold text-white tracking-tight">
               Arlyn Arta Pradipa
@@ -20,7 +19,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Sisi Kanan: Tautan Sosial & Kontak Cepat */}
           <div className="flex items-center gap-5">
             <a 
               href="https://github.com/arlyn-art" 
@@ -53,7 +51,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Bagian Bawah: Copyright & Navigasi Cepat */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {currentYear} Arlyn Arta Pradipa. All rights reserved.</p>
           
