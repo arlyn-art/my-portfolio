@@ -11,7 +11,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 py-12 px-4 transition-colors">
+    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 pt-12 sm:pb-12 pb-[7rem] px-4 transition-colors">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-slate-800">
           
@@ -46,7 +46,7 @@ export default function Footer() {
             </a>
 
             <a 
-              href="mailto:emailanda@domain.com" 
+              href="mailto:arlynartapradipa9c@gmail.com" 
               aria-label="Email"
               className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 shadow-xs transition"
             >

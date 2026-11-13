@@ -30,14 +30,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
+    <html lang="id" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         />
       </head>
-      <body className="bg-slate-950 text-white flex flex-col min-h-screen">
+      <body className="font-sans bg-slate-950 text-white flex flex-col min-h-screen antialiased">
         <Navbar />
 
         <main className="grow pt-20">{children}</main>

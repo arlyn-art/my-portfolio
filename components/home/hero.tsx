@@ -12,7 +12,7 @@ export default function Hero() {
   const [percentCount, setPercentCount] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  const codeSnippet = `<div id="profile">\n  <h1>Hi, I'm Arlyn</h1>\n  <p>Full Stack Sofrware Developer</p>\n</div>`;
+  const codeSnippet = `<div id="profile">\n  <h1>Hi, I'm Arlyn</h1>\n  <p>Full Stack Software Developer</p>\n</div>`;
 
   useEffect(() => {
     setIsMounted(true);
@@ -63,7 +63,7 @@ export default function Hero() {
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       
       setProjectCount(Math.floor(progress * 10));
-      setYearCount(Math.floor(progress * 2));
+      setYearCount(Math.floor(progress * 4));
       setPercentCount(Math.floor(progress * 100));
 
       if (progress < 1) {
@@ -102,7 +102,7 @@ export default function Hero() {
             </h1>
 
             <h2 className="mt-4 text-xl sm:text-2xl md:text-3xl font-semibold text-slate-700">
-                Full Stack Sofrware Developer
+                Full Stack Software Developer
             </h2>
             
             <p className="mt-3 text-sm sm:text-base font-mono font-medium text-blue-600">
@@ -191,7 +191,7 @@ export default function Hero() {
                             </div>
                             <div className="space-y-1">
                                 <h3 className="text-lg font-bold text-slate-900">Hi, I'm Arlyn</h3>
-                                <p className="text-sm text-slate-600">Full Stack Sofrware Developer</p>
+                                <p className="text-sm text-slate-600">Full Stack Software Developer</p>
                             </div>
                             <div className="pt-2 flex justify-center gap-2">
                                 <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-[11px] text-blue-600 font-mono shadow-xs">React / Next.js</span>
