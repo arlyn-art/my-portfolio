@@ -3,6 +3,7 @@ export default [
         id: "comm-1",
         category: "commercial",
         company: "CV Dunia Horeca (Sister Company of PT Indonesia Utensil)",
+        agency: "PT Design Tiga Selaras",
         title: {
             en: "B2B E-Catalog & Corporate Website",
             id: "Website Perusahaan & E-Katalog B2B"
@@ -33,6 +34,7 @@ export default [
         id: "comm-2",
         category: "commercial",
         company: "PT Santos Jaya Abadi (Kapal Api Global)",
+        agency: "PT Design Tiga Selaras",
         title: {
             en: "Campaign & Corporate Articles Website",
             id: "Website Kampanye & Artikel Korporat"
