@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import projects from '@/data/projects';
-import { ExternalLink, Code, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Code, ArrowRight, ChevronLeft, ChevronRight, Sparkles, Layers } from 'lucide-react';
 
 const categoryLabels: Record<string, string> = {
   commercial: 'Commercial',
@@ -38,7 +38,10 @@ export default function SelectedProjects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-12">
           <div>
-            <span className="text-blue-600 font-mono text-sm tracking-wider uppercase">Portfolio Showcase</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-mono text-xs font-semibold tracking-wider uppercase mb-3">
+              <Layers className="w-3.5 h-3.5" />
+              <span>Projects</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-black mt-2 tracking-tight">
               Selected Projects
             </h2>

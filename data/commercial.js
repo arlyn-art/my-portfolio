@@ -180,6 +180,9 @@ export default [
         id: "comm-7",
         category: "commercial",
         company: "Hidup Banyak Rasa (Campaign Platform)",
+        agency: "PT. Design Tiga Selaras",
+        video: "assets/video/hidupbanyakrasa.mp4",
+        impact: "Good Day Campaign • High-Traffic Lifestyle Platform",
         title: {
             en: "Interactive Campaign & Lifestyle Website",
             id: "Website Kampanye & Gaya Hidup Interaktif"
