@@ -184,7 +184,7 @@ export default function FeaturedProject() {
                     {featured.technologies.map((tech: string, idx: number) => (
                       <span
                         key={idx}
-                        className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200/60 text-slate-700 text-xs font-mono"
+                        className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200/60 text-slate-700 text-xs font-mono hover:bg-blue-600 hover:text-white cursor-pointer"
                       >
                         {tech}
                       </span>

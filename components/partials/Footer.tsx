@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Mail, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState<number>(2026);
@@ -10,59 +11,86 @@ export default function Footer() {
     setCurrentYear(new Date().getFullYear());
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 pt-12 sm:pb-12 pb-[7rem] px-4 transition-colors">
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-slate-800">
+    <footer className="bg-slate-950 border-t border-slate-900 text-slate-400 pt-14 sm:pb-12 pb-28 px-6 sm:px-8">
+      <div className="container mx-auto">
+        
+        {/* Baris Atas: Brand, Deskripsi & Social Icons */}
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 pb-10 border-b border-slate-800/80">
           
-          <div className="text-center md:text-left space-y-2">
-            <h3 className="text-lg font-bold text-white tracking-tight">
-              Arlyn Arta Pradipa
-            </h3>
-            <p className="text-sm text-slate-400 max-w-md">
-              Full Stack & Mobile Developer yang berfokus pada pembuatan solusi digital berkualitas tinggi, kode bersih, dan performa optimal.
+          <div className="text-center md:text-left space-y-2.5">
+            <Link href="/" className="inline-block text-xl font-black text-white tracking-tight">
+              Arlyn Arta Pradipa<span className="text-blue-500">.</span>
+            </Link>
+            <p className="text-sm text-slate-400 max-w-md leading-relaxed">
+              Full Stack &amp; Mobile Developer yang berfokus pada pembuatan solusi digital berkualitas tinggi, kode bersih, dan performa optimal.
             </p>
           </div>
 
-          <div className="flex items-center gap-5">
-            <a 
-              href="https://github.com/arlyn-art" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+          {/* Social Links (Inline SVG + Lucide, tanpa ketergantungan FontAwesome) */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://github.com/arlyn-art"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 shadow-xs transition"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-slate-800 transition"
             >
-              <i className="fab fa-github text-lg"></i>
-            </a>
-            
-            <a 
-              href="https://www.linkedin.com/in/arlyn-arta-pradipa-6b8102152/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="LinkedIn"
-              className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 shadow-xs transition"
-            >
-              <i className="fab fa-linkedin text-lg"></i>
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
             </a>
 
-            <a 
-              href="mailto:arlynartapradipa9c@gmail.com" 
-              aria-label="Email"
-              className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 shadow-xs transition"
+            <a
+              href="https://www.linkedin.com/in/arlyn-arta-pradipa-6b8102152/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-slate-800 transition"
             >
-              <i className="fas fa-envelope text-lg"></i>
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+            </a>
+
+            <a
+              href="mailto:arlynartapradipa9c@gmail.com"
+              aria-label="Email"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-slate-800 transition"
+            >
+              <Mail className="w-4 h-4" />
             </a>
           </div>
 
         </div>
 
+        {/* Baris Bawah: Copyright, Navigasi Halaman & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {currentYear} Arlyn Arta Pradipa. All rights reserved.</p>
+          <p className="font-mono">© {currentYear} Arlyn Arta Pradipa. All rights reserved.</p>
           
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-            <Link href="/about" className="hover:text-blue-400 transition">About</Link>
-            <a href="#projects" className="hover:text-blue-400 transition">Projects</a>
+            <Link href="/projects" className="hover:text-blue-400 transition">Projects</Link>
+            <Link href="/journey" className="hover:text-blue-400 transition">Journey</Link>
+            <Link href="/contact" className="hover:text-blue-400 transition">Contact</Link>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label="Kembali ke atas"
+              className="inline-flex items-center gap-1 text-slate-400 hover:text-white transition cursor-pointer ml-2"
+            >
+              <span>Top</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 
