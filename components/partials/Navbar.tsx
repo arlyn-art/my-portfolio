@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, FolderGit2, Compass, LucideIcon } from 'lucide-react';
+import { Home, User, FolderGit2, Compass, LucideIcon, Mail } from 'lucide-react';
 
 // Tipe data untuk setiap item menu
 export interface NavItem {
@@ -18,6 +18,7 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '/about', icon: User },
   { label: 'Projects', href: '/projects', icon: FolderGit2 },
   { label: 'Journey', href: '/journey', icon: Compass },
+  { label: 'Contact', href: '/contact', icon: Mail },
 ];
 
 interface NavbarProps {

@@ -7,9 +7,9 @@ export default function Hero() {
   const [phase, setPhase] = useState<'typing' | 'running' | 'preview'>('typing');
   const [typedCode, setTypedCode] = useState('');
   
-  const [projectCount, setProjectCount] = useState(0);
-  const [yearCount, setYearCount] = useState(0);
-  const [percentCount, setPercentCount] = useState(0);
+  const [projectCount, setProjectCount] = useState(10);
+  const [yearCount, setYearCount] = useState(4);
+  const [percentCount, setPercentCount] = useState(100);
   const [isMounted, setIsMounted] = useState(false);
 
   const codeSnippet = `<div id="profile">\n  <h1>Hi, I'm Arlyn</h1>\n  <p>Full Stack Software Developer</p>\n</div>`;
@@ -56,6 +56,10 @@ export default function Hero() {
   }, [phase]);
 
   useEffect(() => {
+    setProjectCount(0);
+    setYearCount(0);
+    setPercentCount(0);
+
     let startTimestamp: number | null = null;
     const duration = 1500; 
     const step = (timestamp: number) => {
