@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "Lihat karya, proyek web, dan keahlian pengembangan aplikasi Full Stack oleh Arlyn Arta Pradipa.",
     images: [
       {
-        url: "/assets/images/og-image.jpg", 
+        url: "/assets/images/og-image.jpg?v=2",
         width: 1200,
         height: 630,
         alt: "Arlyn Arta Pradipa - Full Stack Developer",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Arlyn Arta Pradipa | Full Stack Developer",
     description:
       "Portfolio resmi Arlyn Arta Pradipa, Full Stack Developer (Laravel, Next.js, React).",
-    images: ["/assets/images/og-image.jpg"],
+    images: ["/assets/images/og-image.jpg?v=2"],
   },
   robots: {
     index: true,
