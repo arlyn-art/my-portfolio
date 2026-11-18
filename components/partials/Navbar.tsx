@@ -12,7 +12,7 @@ export interface NavItem {
   icon: LucideIcon;
 }
 
-// Daftar menu default (bisa juga di-override lewat props jika dibutuhkan)
+// Daftar menu default
 const DEFAULT_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'About', href: '/about', icon: User },
@@ -28,7 +28,7 @@ interface NavbarProps {
 export default function Navbar({ items = DEFAULT_NAV_ITEMS }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
-  const pathname = usePathname(); // Untuk cek menu mana yang sedang aktif
+  const pathname = usePathname();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -56,6 +56,11 @@ export default function Navbar({ items = DEFAULT_NAV_ITEMS }: NavbarProps) {
       clearTimeout(timer);
     };
   }, []);
+
+  const checkIsActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <>
@@ -99,11 +104,11 @@ export default function Navbar({ items = DEFAULT_NAV_ITEMS }: NavbarProps) {
               </Link>
             </div>
 
-            {/* Menu Links Desktop (Looping dari array items) */}
+            {/* Menu Links Desktop */}
             <div className="flex items-center gap-6">
               <div className="hidden lg:flex items-center gap-8 font-medium">
                 {items.map((item) => {
-                  const isActive = pathname === item.href;
+                  const isActive = checkIsActive(item.href);
                   return (
                     <Link
                       key={item.href}
@@ -115,7 +120,6 @@ export default function Navbar({ items = DEFAULT_NAV_ITEMS }: NavbarProps) {
                       }`}
                     >
                       {item.label}
-                      {/* Garis indikator kecil di bawah menu aktif */}
                       {isActive && (
                         <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
                       )}
@@ -159,11 +163,11 @@ export default function Navbar({ items = DEFAULT_NAV_ITEMS }: NavbarProps) {
       </nav>
 
       {/* Bottom Floating Navigation (Mobile & Tablet) */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 lg:hidden z-50 w-[90%] max-w-sm">
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 lg:hidden z-50 w-[92%] max-w-md">
         <div className="flex items-center justify-around rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-xl shadow-xl px-2 py-2">
           {items.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive = checkIsActive(item.href);
             return (
               <Link
                 key={item.href}

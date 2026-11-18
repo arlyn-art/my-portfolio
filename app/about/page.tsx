@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import {
   User,
@@ -24,11 +24,11 @@ const PROFILE_PHOTOS = [
   },
   {
     src: '/assets/images/profile.jpeg',
-    caption: 'Building Scalable Web & Enterprise Systems',
+    caption: 'Jawa Tengah, Indonesia',
   },
   {
     src: '/assets/images/profile-2.jpeg',
-    caption: 'Jakarta, Indonesia',
+    caption: 'Jawa Tengah, Indonesia',
   },
 ];
 
@@ -98,6 +98,9 @@ const TECH_TAGS = [
 
 export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const startXRef = useRef<number | null>(null);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? PROFILE_PHOTOS.length - 1 : prev - 1));
@@ -105,6 +108,36 @@ export default function AboutPage() {
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev === PROFILE_PHOTOS.length - 1 ? 0 : prev + 1));
+  };
+
+  // Pointer Events (Mendukung Mouse Drag & Touch Swipe)
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    startXRef.current = e.clientX;
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || startXRef.current === null) return;
+    const deltaX = e.clientX - startXRef.current;
+    // Batasi tarikan maksimal +-140px agar tetap terasa natural
+    const clampedX = Math.max(-140, Math.min(140, deltaX));
+    setDragX(clampedX);
+  };
+
+  const handlePointerUp = () => {
+    if (!isDragging) return;
+
+    const threshold = 50; // Jarak minimal geser (50px) untuk ganti foto
+    if (dragX >= threshold) {
+      handleNext();
+    } else if (dragX <= -threshold) {
+      handlePrev();
+    }
+
+    setIsDragging(false);
+    setDragX(0);
+    startXRef.current = null;
   };
 
   return (
@@ -130,43 +163,57 @@ export default function AboutPage() {
           {/* 2-Column Split: Photo Stack (Left) & Bio Story (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
             
-            {/* Left Column: Interactive Stacked Photo Cards */}
+            {/* Left Column: Interactive Draggable Stacked Photo Cards */}
             <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-72 h-88 sm:w-80 sm:h-96">
+              <div
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerUp}
+                className="relative w-72 h-88 sm:w-80 sm:h-96 select-none touch-pan-y cursor-grab active:cursor-grabbing"
+              >
                 {PROFILE_PHOTOS.map((photo, index) => {
-                  // Hitung posisi relatif tiap kartu terhadap activeIndex
                   const offset =
                     (index - activeIndex + PROFILE_PHOTOS.length) % PROFILE_PHOTOS.length;
 
                   let cardStyle = '';
                   if (offset === 0) {
-                    // Kartu paling depan (aktif)
-                    cardStyle =
-                      'z-30 translate-x-0 translate-y-0 rotate-0 scale-100 opacity-100 shadow-2xl';
+                    cardStyle = 'z-30 opacity-100 shadow-2xl';
                   } else if (offset === 1) {
-                    // Kartu lapis kedua
                     cardStyle =
                       'z-20 translate-x-4 translate-y-3 rotate-3 scale-95 opacity-80 shadow-lg';
                   } else {
-                    // Kartu lapis ketiga
                     cardStyle =
                       'z-10 -translate-x-4 translate-y-4 -rotate-3 scale-90 opacity-55 shadow-md';
                   }
 
+                  // Kartu terdepan mengikuti gerakan drag mouse/jari secara real-time
+                  const activeTransform =
+                    offset === 0
+                      ? {
+                          transform: `translateX(${dragX}px) rotate(${dragX * 0.08}deg)`,
+                          transition: isDragging
+                            ? 'none'
+                            : 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease',
+                        }
+                      : undefined;
+
                   return (
                     <div
                       key={photo.src}
-                      onClick={() => setActiveIndex(index)}
-                      className={`absolute inset-0 rounded-3xl overflow-hidden border-4 border-white bg-slate-100 transition-all duration-500 ease-out cursor-pointer ${cardStyle}`}
+                      style={activeTransform}
+                      className={`absolute inset-0 rounded-3xl overflow-hidden border-4 border-white bg-slate-100 ${
+                        offset !== 0 ? 'transition-all duration-500 ease-out' : ''
+                      } ${cardStyle}`}
                     >
                       <img
                         src={photo.src}
                         alt={photo.caption}
-                        className="w-full h-full object-cover"
+                        draggable={false}
+                        className="w-full h-full object-cover pointer-events-none"
                       />
-                      {/* Caption gradient di bawah kartu aktif */}
                       {offset === 0 && (
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent p-4 pt-10">
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent p-4 pt-10 pointer-events-none">
                           <p className="text-xs font-mono text-white/90">{photo.caption}</p>
                         </div>
                       )}
