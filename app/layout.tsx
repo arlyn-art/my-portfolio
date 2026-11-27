@@ -4,6 +4,7 @@ import Navbar from "@/components/partials/Navbar";
 import Footer from "@/components/partials/Footer";
 import "./globals.css";
 import { Suspense } from "react";
+import FloatingAssistant from "@/components/FloatingAssistant";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,6 +96,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-slate-950 text-white flex flex-col min-h-screen antialiased">
+        <FloatingAssistant />
         <Suspense fallback={<div className="h-20 bg-white border-b border-slate-200" />}>
           <Navbar />
         </Suspense>
